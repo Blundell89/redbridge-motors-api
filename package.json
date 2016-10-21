@@ -1,0 +1,28 @@
+{
+  "name": "redbridge-motors-api",
+  "version": "0.0.1",
+  "description": "Redbridge Motors API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p src",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blundell89/redbridge-motors-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blundell89/redbridge-motors-api/issues"
+  },
+  "homepage": "https://github.com/Blundell89/redbridge-motors-api#readme",
+  "dependencies": {
+    "hapi": "^15.2.0"
+  },
+  "devDependencies": {
+    "@types/hapi": "^13.0.36",
+    "typescript": "^2.0.3"
+  }
+}
