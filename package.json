@@ -5,7 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "tsc -p src",
-    "start": "node dist/server.js",
+    "build:w": "tsc -p src -w",
+    "start": "nodemon dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "@types/hapi": "^13.0.37",
     "@types/jsonwebtoken": "^7.2.0",
     "@types/node": "^6.0.54",
+    "nodemon": "^1.11.0",
     "typescript": "^2.1.4"
   }
 }
