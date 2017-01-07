@@ -1,6 +1,6 @@
 import {IRouteConfiguration} from 'hapi';
 
-export const lolRoute: IRouteConfiguration = {
+export const getListings: IRouteConfiguration = {
   config: {
     auth: false
   },
@@ -8,5 +8,5 @@ export const lolRoute: IRouteConfiguration = {
     res('Lol!');
   },
   method: 'GET',
-  path: '/lol'
+  path: '/listings'
 };
