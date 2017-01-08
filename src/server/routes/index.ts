@@ -1,7 +1,7 @@
 import {tokenRoute} from './oauth/token';
-import {lolRoute} from './lol';
+import {getListings} from './listing';
 
 export default [
   tokenRoute,
-  lolRoute
+  getListings
 ];
