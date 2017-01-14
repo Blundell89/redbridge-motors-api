@@ -1,4 +1,4 @@
-import * as HapiAuthJwt from 'hapi-auth-jwt2';
+let HapiAuthJwt = require('hapi-auth-jwt2');
 
 export default [
   HapiAuthJwt

@@ -1,7 +1,8 @@
 import {tokenRoute} from './oauth/token';
-import {getListings} from './listing';
+import * as Listings from './listing';
 
 export default [
   tokenRoute,
-  getListings
+  Listings.getListing,
+  Listings.getListings
 ];

@@ -1,3 +1,4 @@
 class Listing {
-    id: Number;
+    id: string;
+    model: string;
 }
