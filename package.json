@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Blundell89/redbridge-motors-api#readme",
   "dependencies": {
+    "data-uri-to-buffer": "0.0.4",
     "hapi": "^16.1.0",
     "hapi-auth-jwt2": "^7.2.4",
     "jsonwebtoken": "^7.2.0",

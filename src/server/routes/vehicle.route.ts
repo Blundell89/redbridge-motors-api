@@ -26,7 +26,7 @@ export class VehicleRoute {
     handler: async (req, res) => {
       const id = req.params['id'];
 
-      var vehicle = await this.vehicleService.getVehicle(id)
+      var vehicle = await this.vehicleService.getVehicle(id);
       res(vehicle);
     },
     method: 'GET',
