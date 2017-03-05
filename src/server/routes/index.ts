@@ -1,8 +1,13 @@
 import {tokenRoute} from './oauth/token';
-import * as Listings from './listing';
+import { VehicleRoute } from './vehicle.route';
+import { VehicleService } from "../../services/vehicles/vehicle.service";
+
+var vehicleService = new VehicleService();
+var vehicles = new VehicleRoute(vehicleService);
 
 export default [
   tokenRoute,
-  Listings.getListing,
-  Listings.getListings
+  vehicles.getVehicle,
+  vehicles.getVehicles,
+  vehicles.createVehicle
 ];

@@ -31,6 +31,6 @@
     "@types/mongodb": "^2.1.41",
     "@types/node": "^7.0.5",
     "nodemon": "^1.11.0",
-    "typescript": "^2.1.4"
+    "typescript": "^2.2.1"
   }
 }
