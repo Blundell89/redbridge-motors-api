@@ -1,6 +1,7 @@
 import { IRouteConfiguration } from 'hapi';
 import { VehicleService } from "../../services/vehicles/vehicle.service";
 import { Vehicle } from "../../services/vehicles/vehicle.interface";
+import { CreatedResponse } from "../responses/created.response";
 
 export class VehicleRoute {
   constructor(private vehicleService: VehicleService) {
