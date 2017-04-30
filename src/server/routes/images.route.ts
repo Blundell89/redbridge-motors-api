@@ -1,15 +1,14 @@
 import { IRouteConfiguration } from 'hapi';
+import * as Boom from 'boom';
+
 import { ImageService } from '../../services/images/image.service';
 const dataUriToBuffer = require('data-uri-to-buffer');
 
-export class ImageRoute {
+export class ImagesRoute {
   constructor(private imageService: ImageService) {
   }
 
   createImage: IRouteConfiguration = {
-    config: {
-      auth: false
-    },
     handler: (req, res) => {
       let uri = req.payload.data;
       let buffer = dataUriToBuffer(uri);
@@ -17,7 +16,7 @@ export class ImageRoute {
       let location = this.imageService.create(buffer, buffer.type)
       .then(location => res('').created(location))
       .catch(err => {
-        throw err;
+        res(Boom.create(err));
       });
     },
     method: 'POST',

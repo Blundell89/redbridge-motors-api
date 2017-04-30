@@ -1,17 +1,24 @@
-import {tokenRoute} from './oauth/token';
-import { VehicleRoute } from './vehicle.route';
+import { VehiclesRoute } from './vehicles.route';
 import { VehicleService } from "../../services/vehicles/vehicle.service";
-import { ImageRoute } from "./image.route";
+import { ImagesRoute } from "./images.route";
 import { ImageService } from "../../services/images/image.service";
+import { MongoIdMapperService } from "../../services/mongo-id-mapper.service";
+import { VehicleFeatureService } from "../../services/vehicle-features/vehicle-features.service";
+import { FeaturesRoute } from "./features.route";
 
-var vehicleService = new VehicleService();
-var imageService = new ImageService();
+let mongoIdMapperService = new MongoIdMapperService();
+let vehicleService = new VehicleService(mongoIdMapperService);
+let vehicleFeatureService = new VehicleFeatureService(mongoIdMapperService);
+let imageService = new ImageService();
 
-var vehicles = new VehicleRoute(vehicleService);
-var images = new ImageRoute(imageService);
+let vehicles = new VehiclesRoute(vehicleService);
+let images = new ImagesRoute(imageService);
+let features = new FeaturesRoute(vehicleFeatureService);
 
 export default [
-  tokenRoute,
+  features.create,
+  features.get,
+  features.getById,
   vehicles.getVehicle,
   vehicles.getVehicles,
   vehicles.createVehicle,

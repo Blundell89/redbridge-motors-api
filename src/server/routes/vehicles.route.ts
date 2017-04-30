@@ -3,7 +3,7 @@ import { VehicleService } from "../../services/vehicles/vehicle.service";
 import { Vehicle } from "../../services/vehicles/vehicle.interface";
 import { CreatedResponse } from "../responses/created.response";
 
-export class VehicleRoute {
+export class VehiclesRoute {
   constructor(private vehicleService: VehicleService) {
   }
 
@@ -11,10 +11,11 @@ export class VehicleRoute {
     config: {
       auth: false
     },
-    handler: async (req, res) => {
-
-      var vehicles = await this.vehicleService.getVehicles();
-      res(vehicles);
+    handler: (req, res) => {
+      this.vehicleService.getVehicles()
+        .then(vehicles => {
+          res(vehicles);
+        });
     },
     method: 'GET',
     path: '/vehicles'
@@ -24,29 +25,32 @@ export class VehicleRoute {
     config: {
       auth: false
     },
-    handler: async (req, res) => {
+    handler: (req, res) => {
       const id = req.params['id'];
 
-      var vehicle = await this.vehicleService.getVehicle(id);
-      res(vehicle);
+      this.vehicleService.getVehicle(id)
+        .then(vehicle => {
+          res(vehicle);
+        });
     },
     method: 'GET',
     path: '/vehicles/{id}'
   };
 
   createVehicle: IRouteConfiguration = {
-    handler: async (req, res) => {
-      const vehicle = <Vehicle>req.payload;
+    handler: (req, res) => {
+      const vehicle: Vehicle = req.payload;
 
-      let inserted = await this.vehicleService.createVehicle(vehicle);
+      this.vehicleService.createVehicle(vehicle)
+        .then(id => {
+          let response: CreatedResponse = {
+            data: {
+              id: id
+            }
+          };
 
-      let response: CreatedResponse = {
-        data: {
-          id: inserted
-        }
-      };
-
-      return res(response).code(201).header('Location', `/vehicles/${inserted}`);
+          res(response).code(201).header('Location', `/vehicles/${id}`);
+        });
     },
     method: 'POST',
     path: '/vehicles'

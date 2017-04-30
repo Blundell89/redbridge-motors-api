@@ -20,21 +20,21 @@
   "homepage": "https://github.com/Blundell89/redbridge-motors-api#readme",
   "dependencies": {
     "azure-storage": "^2.1.0",
+    "boom": "^4.3.1",
     "data-uri-to-buffer": "0.0.4",
     "hapi": "^16.1.1",
     "hapi-auth-jwt2": "^7.2.4",
-    "jsonwebtoken": "^7.2.0",
     "mongodb": "^2.2.24",
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {
+    "@types/boom": "^4.3.1",
     "@types/hapi": "^16.0.3",
-    "@types/jsonwebtoken": "^7.2.0",
     "@types/mongodb": "^2.1.43",
     "@types/node": "^7.0.5",
     "@types/node-uuid": "0.0.28",
     "nodemon": "^1.11.0",
     "ts-node": "^3.0.2",
-    "typescript": "^2.2.1"
+    "typescript": "^2.3.2"
   }
 }
