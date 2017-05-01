@@ -1,25 +1,26 @@
-import { IRouteConfiguration } from 'hapi';
 import * as Boom from 'boom';
 
+import { IRouteConfiguration } from 'hapi';
+
 import { ImageService } from '../../services/images/image.service';
-const dataUriToBuffer = require('data-uri-to-buffer');
+import dataUriToBuffer = require('data-uri-to-buffer');
 
 export class ImagesRoute {
-  constructor(private imageService: ImageService) {
-  }
-
-  createImage: IRouteConfiguration = {
+  public createImage: IRouteConfiguration = {
     handler: (req, res) => {
-      let uri = req.payload.data;
-      let buffer = dataUriToBuffer(uri);
+      const uri = req.payload.data;
+      const buffer = dataUriToBuffer(uri);
 
-      let location = this.imageService.create(buffer, buffer.type)
-      .then(location => res('').created(location))
-      .catch(err => {
+      const location = this.imageService.create(buffer, buffer.type)
+      .then((url) => res('').created(url))
+      .catch((err) => {
         res(Boom.create(err));
       });
     },
     method: 'POST',
-    path: '/images'
+    path: '/images',
+  };
+
+  constructor(private imageService: ImageService) {
   }
 }

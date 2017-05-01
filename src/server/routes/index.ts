@@ -1,19 +1,20 @@
+import { FeaturesRoute } from './features.route';
+import { ImagesRoute } from './images.route';
 import { VehiclesRoute } from './vehicles.route';
-import { VehicleService } from "../../services/vehicles/vehicle.service";
-import { ImagesRoute } from "./images.route";
-import { ImageService } from "../../services/images/image.service";
-import { MongoIdMapperService } from "../../services/mongo-id-mapper.service";
-import { VehicleFeatureService } from "../../services/vehicle-features/vehicle-features.service";
-import { FeaturesRoute } from "./features.route";
 
-let mongoIdMapperService = new MongoIdMapperService();
-let vehicleService = new VehicleService(mongoIdMapperService);
-let vehicleFeatureService = new VehicleFeatureService(mongoIdMapperService);
-let imageService = new ImageService();
+import { ImageService } from '../../services/images/image.service';
+import { MongoIdMapperService } from '../../services/mongo-id-mapper.service';
+import { VehicleFeatureService } from '../../services/vehicle-features/vehicle-features.service';
+import { VehicleService } from '../../services/vehicles/vehicle.service';
 
-let vehicles = new VehiclesRoute(vehicleService);
-let images = new ImagesRoute(imageService);
-let features = new FeaturesRoute(vehicleFeatureService);
+const mongoIdMapperService = new MongoIdMapperService();
+const vehicleService = new VehicleService(mongoIdMapperService);
+const vehicleFeatureService = new VehicleFeatureService(mongoIdMapperService);
+const imageService = new ImageService();
+
+const vehicles = new VehiclesRoute(vehicleService);
+const images = new ImagesRoute(imageService);
+const features = new FeaturesRoute(vehicleFeatureService);
 
 export default [
   features.create,
@@ -22,5 +23,5 @@ export default [
   vehicles.getVehicle,
   vehicles.getVehicles,
   vehicles.createVehicle,
-  images.createImage
+  images.createImage,
 ];

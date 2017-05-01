@@ -1,19 +1,20 @@
 import * as Hapi from 'hapi';
-import Routes from './routes/index';
-import Plugins from './plugins/index';
-import * as JwtStrategy from './jwtStrategy';
+
 import Constants from './constants';
+import * as JwtStrategy from './jwtStrategy';
+import Plugins from './plugins/index';
+import Routes from './routes/index';
 
 const connectionOptions: Hapi.IServerConnectionOptions = {
-  port: process.env.port || Constants.serverPort
+  port: process.env.port || Constants.serverPort,
 };
 
 const server = new Hapi.Server();
 server.connection(connectionOptions);
 
-server.register(Plugins, function (err) {
+server.register(Plugins, (err) => {
   if (err) {
-    console.log(err);
+    console.error(err);
   }
 
   JwtStrategy.applyJwtAuthStrategy(server);
@@ -21,11 +22,12 @@ server.register(Plugins, function (err) {
 
   server.route(Routes);
 
-  server.start((err) => {
-    if (err) {
-      throw err;
+  server.start((startError) => {
+    if (startError) {
+      throw startError;
     }
 
+    // tslint:disable-next-line:no-console
     console.log(`Running server on ${connectionOptions.port}`);
-  })
+  });
 });

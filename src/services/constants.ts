@@ -6,6 +6,6 @@ export default Object.seal({
     },
     fileStorage: {
         connectionString: process.env.storageConnectionString || 'UseDevelopmentStorage=true',
-        publicAssetsContainer: 'public-assets'
-    }
+        publicAssetsContainer: 'public-assets',
+    },
 });

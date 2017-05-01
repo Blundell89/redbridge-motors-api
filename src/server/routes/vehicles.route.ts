@@ -1,58 +1,60 @@
 import { IRouteConfiguration } from 'hapi';
-import { VehicleService } from "../../services/vehicles/vehicle.service";
-import { Vehicle } from "../../services/vehicles/vehicle.interface";
-import { CreatedResponse } from "../responses/created.response";
+
+import { VehicleService } from '../../services/vehicles/vehicle.service';
+import { CreatedResponse } from '../responses/created.response';
+
+import { Vehicle } from '../../services/vehicles/vehicle.interface';
 
 export class VehiclesRoute {
-  constructor(private vehicleService: VehicleService) {
-  }
-
-  getVehicles: IRouteConfiguration = {
-    config: {
-      auth: false
-    },
-    handler: (req, res) => {
-      this.vehicleService.getVehicles()
-        .then(vehicles => {
-          res(vehicles);
-        });
-    },
-    method: 'GET',
-    path: '/vehicles'
-  };
-
-  getVehicle: IRouteConfiguration = {
-    config: {
-      auth: false
-    },
-    handler: (req, res) => {
-      const id = req.params['id'];
-
-      this.vehicleService.getVehicle(id)
-        .then(vehicle => {
-          res(vehicle);
-        });
-    },
-    method: 'GET',
-    path: '/vehicles/{id}'
-  };
-
-  createVehicle: IRouteConfiguration = {
+  public createVehicle: IRouteConfiguration = {
     handler: (req, res) => {
       const vehicle: Vehicle = req.payload;
 
       this.vehicleService.createVehicle(vehicle)
-        .then(id => {
-          let response: CreatedResponse = {
+        .then((id) => {
+          const response: CreatedResponse = {
             data: {
-              id: id
-            }
+              id,
+            },
           };
 
           res(response).code(201).header('Location', `/vehicles/${id}`);
         });
     },
     method: 'POST',
-    path: '/vehicles'
+    path: '/vehicles',
+  };
+
+  public getVehicle: IRouteConfiguration = {
+    config: {
+      auth: false,
+    },
+    handler: (req, res) => {
+      const id = req.params.id;
+
+      this.vehicleService.getVehicle(id)
+        .then((vehicle) => {
+          res(vehicle);
+        });
+    },
+    method: 'GET',
+    path: '/vehicles/{id}',
+  };
+
+  public getVehicles: IRouteConfiguration = {
+    config: {
+      auth: false,
+    },
+    handler: (req, res) => {
+      this.vehicleService.getVehicles()
+        .then((vehicles) => {
+          res(vehicles);
+        });
+    },
+    method: 'GET',
+    path: '/vehicles',
+  };
+
+  constructor(private vehicleService: VehicleService) {
   }
 }

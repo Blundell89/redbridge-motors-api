@@ -1,4 +1,4 @@
-import { VehicleFeature } from "../vehicle-features/vehicle-feature.interface";
+import { VehicleFeature } from '../vehicle-features/vehicle-feature.interface';
 
 export interface Vehicle {
   id: string;
