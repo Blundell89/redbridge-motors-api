@@ -1,6 +1,6 @@
 import * as mongodb from 'mongodb';
 
-import Constants from '../constants';
+import Constants from '../../constants';
 import { MongoIdMapperService } from '../mongo-id-mapper.service';
 import { Vehicle } from './vehicle.interface';
 

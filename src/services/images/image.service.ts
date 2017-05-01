@@ -1,7 +1,7 @@
 import * as Azure from 'azure-storage';
 import * as Uuid from 'node-uuid';
 import * as stream from 'stream';
-import Constants from '../constants';
+import Constants from '../../constants';
 
 export class ImageService {
   public create(buffer: Buffer, contentType: string): Promise<string> {

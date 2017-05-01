@@ -1,4 +1,8 @@
 export default Object.seal({
+    app: {
+        port: process.env.port || 4200,
+        privateKey: process.env.privateKey || 'private',
+    },
     data: {
         mongoUrl: process.env.mongoUrl || 'mongodb://localhost/redbridge-motors',
         vehicleCollection: 'vehicles',

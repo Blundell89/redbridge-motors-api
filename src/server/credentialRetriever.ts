@@ -1,3 +1,5 @@
+import Constants from '../constants';
+
 export function getSecretKey(): string {
-  return process.env.privateKey || 'private';
+  return Constants.app.privateKey;
 }

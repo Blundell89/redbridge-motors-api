@@ -1,12 +1,12 @@
 import * as Hapi from 'hapi';
 
-import Constants from './constants';
+import Constants from '../constants';
 import * as JwtStrategy from './jwtStrategy';
 import Plugins from './plugins/index';
 import Routes from './routes/index';
 
 const connectionOptions: Hapi.IServerConnectionOptions = {
-  port: process.env.port || Constants.serverPort,
+  port: Constants.app.port,
 };
 
 const server = new Hapi.Server();
