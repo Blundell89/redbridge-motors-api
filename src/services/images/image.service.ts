@@ -6,16 +6,7 @@ import Constants from '../constants';
 export class ImageService {
   public create(buffer: Buffer, contentType: string): Promise<string> {
     const container = Constants.fileStorage.publicAssetsContainer;
-
-    const blobService = Azure.createBlobService(Constants.fileStorage.connectionString);
-    blobService.createContainerIfNotExists(container, {
-      publicAccessLevel: 'blob',
-    }, (err, result) => {
-      if (err) {
-        throw err.message;
-      }
-    });
-
+    const blobService = this.getBlobService(container);
     const name = Uuid.v4();
     const options: Azure.BlobService.CreateBlobRequestOptions = {
       contentSettings: {
@@ -33,5 +24,31 @@ export class ImageService {
         resolve(url);
       });
     });
+  }
+
+  public delete(id: string): Promise<void> {
+    const container = Constants.fileStorage.publicAssetsContainer;
+    const blobService = this.getBlobService(container);
+
+    return Promise.resolve(blobService.deleteBlob(container, id, (err) => {
+      if (err) {
+        return Promise.reject(err);
+      } else {
+        return Promise.resolve();
+      }
+    }));
+  }
+
+  private getBlobService(container: string): Azure.BlobService {
+    const blobService = Azure.createBlobService(Constants.fileStorage.connectionString);
+    blobService.createContainerIfNotExists(container, {
+      publicAccessLevel: 'blob',
+    }, (err, result) => {
+      if (err) {
+        throw err.message;
+      }
+    });
+
+    return blobService;
   }
 }

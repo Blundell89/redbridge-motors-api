@@ -20,8 +20,9 @@ export default [
   features.create,
   features.get,
   features.getById,
+  images.create,
+  images.delete,
   vehicles.getVehicle,
   vehicles.getVehicles,
   vehicles.createVehicle,
-  images.createImage,
 ];
