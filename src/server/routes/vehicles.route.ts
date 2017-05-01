@@ -1,3 +1,4 @@
+import * as Boom from 'boom';
 import { IRouteConfiguration } from 'hapi';
 
 import { VehicleService } from '../../services/vehicles/vehicle.service';
@@ -35,7 +36,8 @@ export class VehiclesRoute {
       this.vehicleService.getVehicle(id)
         .then((vehicle) => {
           res(vehicle);
-        });
+        })
+        .catch((err) => res(Boom.notFound()));
     },
     method: 'GET',
     path: '/vehicles/{id}',
@@ -49,7 +51,8 @@ export class VehiclesRoute {
       this.vehicleService.getVehicles()
         .then((vehicles) => {
           res(vehicles);
-        });
+        })
+        .catch((err) => res(Boom.create(err)));
     },
     method: 'GET',
     path: '/vehicles',

@@ -1,6 +1,6 @@
 export default Object.seal({
     app: {
-        port: process.env.port || 4200,
+        port: process.env.PORT || 4200,
         privateKey: process.env.privateKey || 'private',
     },
     data: {
