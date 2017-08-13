@@ -1,12 +1,12 @@
 import * as Boom from 'boom';
 
-import { IRouteConfiguration } from 'hapi';
+import { RouteConfiguration } from 'hapi';
 
 import { ImageService } from '../../services/images/image.service';
 import dataUriToBuffer = require('data-uri-to-buffer');
 
 export class ImagesRoute {
-  public create: IRouteConfiguration = {
+  public create: RouteConfiguration = {
     handler: (req, res) => {
       const uri = req.payload.data;
       const buffer = dataUriToBuffer(uri);
@@ -21,7 +21,7 @@ export class ImagesRoute {
     path: '/images',
   };
 
-  public delete: IRouteConfiguration = {
+  public delete: RouteConfiguration = {
     handler: (req, res) => {
       const uri = req.params.id;
 

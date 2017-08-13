@@ -1,12 +1,12 @@
 import * as Boom from 'boom';
-import { IRouteConfiguration } from 'hapi';
+import { RouteConfiguration } from 'hapi';
 
 import { VehicleFeature } from '../../services/vehicle-features/vehicle-feature.interface';
 import { VehicleFeatureService } from '../../services/vehicle-features/vehicle-features.service';
 import { CreatedResponse } from '../responses/created.response';
 
 export class FeaturesRoute {
-  public get: IRouteConfiguration = {
+  public get: RouteConfiguration = {
     handler: (req, res) => {
       this.vehicleFeatureService.get()
         .then((features) => res(features));
@@ -15,7 +15,7 @@ export class FeaturesRoute {
     path: '/features',
   };
 
-  public getById: IRouteConfiguration = {
+  public getById: RouteConfiguration = {
     handler: (req, res) => {
       this.vehicleFeatureService.getById(req.params.id)
       .then((feature) => {
@@ -30,7 +30,7 @@ export class FeaturesRoute {
     path: '/features/{id}',
   };
 
-  public create: IRouteConfiguration = {
+  public create: RouteConfiguration = {
     handler: (req, res) => {
       const feature: VehicleFeature = req.payload;
 

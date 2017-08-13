@@ -1,5 +1,5 @@
 import * as Boom from 'boom';
-import { IRouteConfiguration } from 'hapi';
+import { RouteConfiguration } from 'hapi';
 
 import { VehicleService } from '../../services/vehicles/vehicle.service';
 import { CreatedResponse } from '../responses/created.response';
@@ -7,7 +7,7 @@ import { CreatedResponse } from '../responses/created.response';
 import { Vehicle } from '../../services/vehicles/vehicle.interface';
 
 export class VehiclesRoute {
-  public createVehicle: IRouteConfiguration = {
+  public createVehicle: RouteConfiguration = {
     handler: (req, res) => {
       const vehicle: Vehicle = req.payload;
 
@@ -26,7 +26,7 @@ export class VehiclesRoute {
     path: '/vehicles',
   };
 
-  public getVehicle: IRouteConfiguration = {
+  public getVehicle: RouteConfiguration = {
     config: {
       auth: false,
     },
@@ -43,7 +43,7 @@ export class VehiclesRoute {
     path: '/vehicles/{id}',
   };
 
-  public getVehicles: IRouteConfiguration = {
+  public getVehicles: RouteConfiguration = {
     config: {
       auth: false,
     },

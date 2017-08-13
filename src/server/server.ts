@@ -5,7 +5,7 @@ import * as JwtStrategy from './jwtStrategy';
 import Plugins from './plugins/index';
 import Routes from './routes/index';
 
-const connectionOptions: Hapi.IServerConnectionOptions = {
+const connectionOptions: Hapi.ServerConnectionOptions = {
   port: Constants.app.port,
 };
 
